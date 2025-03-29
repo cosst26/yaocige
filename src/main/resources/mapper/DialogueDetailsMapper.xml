@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.dao.DialogueDetailsMapper">
+  <resultMap id="BaseResultMap" type="com.company.project.model.DialogueDetails">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
+    <result column="is_delete" jdbcType="BIT" property="isDelete" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="dialogue_id" jdbcType="BIGINT" property="dialogueId" />
+    <result column="sender_id" jdbcType="BIGINT" property="senderId" />
+    <result column="sender_name" jdbcType="VARCHAR" property="senderName" />
+    <result column="sender_avatar" jdbcType="VARCHAR" property="senderAvatar" />
+    <result column="recipient_id" jdbcType="BIGINT" property="recipientId" />
+    <result column="recipient_name" jdbcType="VARCHAR" property="recipientName" />
+    <result column="recipient_avatar" jdbcType="VARCHAR" property="recipientAvatar" />
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+
+    <select id="list" resultMap="BaseResultMap">
+        select *
+        from t_dialogue_details
+        where is_delete = 0
+        <if test="dialogueId != null">
+          and dialogue_id = #{dialogueId}
+        </if>
+    </select>
+
+</mapper>

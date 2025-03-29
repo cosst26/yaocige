@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.dao.DailyHexagramMapper">
+  <resultMap id="BaseResultMap" type="com.company.project.model.DailyHexagram">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
+    <result column="is_delete" jdbcType="BIT" property="isDelete" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="status" jdbcType="BIGINT" property="status" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="view_count" jdbcType="INTEGER" property="viewCount" />
+    <result column="author" jdbcType="VARCHAR" property="author" />
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+    <result column="img_url" jdbcType="LONGVARCHAR" property="imgUrl" />
+  </resultMap>
+</mapper>
