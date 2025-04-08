@@ -1,0 +1,376 @@
+.main {
+    margin-top: 20px;
+ }
+ 
+ .loop {
+     display: flex;
+     height: 320px;
+ }
+ 
+ .loop .right {
+     width: 700px;
+     height: 100%;
+ }
+ 
+ .loop .right img {
+     height: 100%;
+     width: 700px;
+     object-fit: cover;
+ }
+ 
+ 
+ .loop .left {
+     width: 500px;
+     border: 1px solid #d2d2d2;
+     background:url(../img/TB140RWMpXXXXXCXVXXXXXXXXXX-489-73.png) no-repeat bottom;
+     background-size: 100%;
+ }
+ 
+ .loop .left .name {
+     border-bottom: 1px solid #ddd;
+     padding: 6px;
+     color: #13334D;
+     font-size: 14px;
+ }
+ 
+ .loop .left .inputbox {
+     display: flex;
+     align-items: center;
+     flex-wrap: wrap;
+     gap: 10px;
+     padding: 20px;
+ }
+ 
+ .loop .left .inputbox .inputiem {
+     width: 210px;
+ }
+ 
+ .loop .left .inputbox .inputiem input {
+     width: 100%;
+     height: 30px;
+     padding: 4px;
+     border-radius: 4px;
+     outline: none;
+     border: 1px solid #73787f;
+     margin-top: 5px;
+ }
+ 
+ .loop .left .inputbox .inputiem .title {
+     font-size: 12px;
+     color: #73787f;
+ }
+ 
+ .loop .left button {
+     width: 130px;
+     height: 36px;
+     background-color: #63b8f0;
+     color: #fff;
+     border: none;
+     border-radius: 4px;
+     float: right;
+     margin-right: 45px;
+     cursor: pointer;
+     font-size: 16px;
+ }
+ 
+ .hot {
+     margin-top: 20px;
+     display: flex;
+     height: 460px;
+    justify-content: space-between;
+ }
+ 
+ .hot .left {
+     width: 290px;
+ }
+
+
+ .hot .right{
+    width: 890px;
+ } 
+ 
+ .hot .left .toper {
+     width: 100%;
+ }
+ 
+ .hot .left .toper .name {
+     color: #ff684d;
+     font-size: 16px;
+     
+ }
+ 
+ .hot .left .toper .line {
+     width: 100%;
+     height: 3px;
+     background-color: #ff684d;
+     margin-top: 10px;
+ }
+ 
+ .hot .left .middles {
+     width: 100%;
+     height: 45px;
+     line-height: 45px;
+     font-size: 12px;
+ }
+ 
+ 
+ .hot .left .hotgood {
+     width: 100%;
+     height: 361px;
+ }
+ 
+ .hot .left .hotgood .imgs {
+     height: 310px;
+     position: relative;
+ }
+ 
+ .hot .left .hotgood .imgs img {
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+ }
+ 
+ .hot .left .hotgood .imgs .goodsname {
+     position: absolute;
+     bottom: 0;
+     left: 0;
+     background-color: #ff684d;
+     color: #fff;
+     width: 100%;
+     height: 40px;
+     font-size: 14px;
+     padding: 10px;
+ }
+ 
+ .hot .left .hotgood .goodinfo {
+     height: 51px;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     font-size: 12px;
+     color: #323232;
+     border-bottom: 1px solid #d2d2d2;
+     border-left: 1px solid #d2d2d2;
+     border-right: 1px solid #d2d2d2;
+     padding: 10px;
+ }
+ 
+ 
+ .hot .left .hotgood .goodinfo .price{
+     color: #ff684d;
+     font-size: 28px;
+ 
+ }
+ 
+
+ 
+ 
+ .hot .right .toper {
+     width: 100%;
+ }
+ 
+ .hot .right .toper .name {
+     color: #ff684d;
+     font-size: 16px;
+     
+ }
+ 
+ .hot .right .toper .line {
+     width: 100%;
+     height: 3px;
+     background-color: #ff684d;
+     margin-top: 10px;
+ }
+ 
+ .hot .right .middles {
+     width: 100%;
+     height: 45px;
+ 
+     font-size: 12px;
+ }
+ 
+ .hot .right .middles ul  {
+     display: flex;
+     height: 100%;
+     align-items: center;
+    gap: 15px;
+ }
+ 
+ .hot .right .middles ul li {
+ 
+     width: 44px;
+     height: 22px;
+     font-size: 12px;
+     text-align: center;
+     line-height: 22px;
+     border-radius: 5px;
+ }
+ 
+ .hot .right .middles ul li.active {
+     background-color: #15bcbe;
+     color: #fff;
+ }
+ 
+ 
+ .hot .right .goodsData {
+     display: flex;
+     align-items: center;
+     flex-wrap: wrap;
+     gap: 10px;
+     width: 1070px !important;
+ }
+ 
+ .hot .right .goodsData  .goodsItem {
+     width: 215px;
+     height: 175px;
+ }
+ 
+ .hot .right .goodsData  .goodsItem .imgs  {
+     height: 135px;
+     width: 215px;
+     position: relative;
+     
+ }
+ 
+ .hot .right .goodsData  .goodsItem .imgs img {
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+ }
+ 
+ .hot .right .goodsData  .goodsItem .imgs .goodsname {
+     position: absolute;
+     bottom: 0;
+     left: 0;
+     width: 100%;
+     height: 30px;
+     background-color: rgba(0, 0, 0, .7);
+     color: #fff;
+     line-height: 30px;
+ }
+ 
+ .hot .right .goodsData  .goodsItem .goodinfo {
+     height: 41px;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     font-size: 12px;
+     color: #323232;
+     border-bottom: 1px solid #d2d2d2;
+     border-left: 1px solid #d2d2d2;
+     border-right: 1px solid #d2d2d2;
+     padding: 10px;
+ }
+ 
+ .hot .right .goodsData  .goodsItem .goodinfo .price{
+     color: #ff684d;
+     font-size: 18px;
+ 
+ }
+ 
+ .yeelow .toper {
+    width: 100%;
+ }
+
+
+ .yeelow {
+    margin-top: 20px;
+    margin-bottom: 20px;
+ }
+ 
+
+
+
+ .lists .toper .name {
+    color: #ff684d;
+    font-size: 16px;
+    
+}
+
+.lists .toper .line {
+    width: 100%;
+    height: 3px;
+    background-color: #ff684d;
+    margin-top: 10px;
+}
+
+.lists .itemlist {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    font-size: 12px;
+    gap: 20px;
+}
+
+.lists .itemlist li {
+    width: 285px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.lists .itemlist li .price {
+    font-size: 14px;
+    color: #ff684d;
+}
+
+
+
+
+.yeelow .goodsData {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.yeelow .goodsData  .goodsItem {
+    width: 215px;
+    height: 175px;
+}
+
+.yeelow .goodsData  .goodsItem .imgs  {
+    height: 135px;
+    width: 215px;
+    position: relative;
+    
+}
+
+.yeelow .goodsData  .goodsItem .imgs img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.yeelow .goodsData  .goodsItem .imgs .goodsname {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    background-color: rgba(0, 0, 0, .7);
+    color: #fff;
+    line-height: 30px;
+}
+
+.yeelow .goodsData  .goodsItem .goodinfo {
+    height: 41px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #323232;
+    border-bottom: 1px solid #d2d2d2;
+    border-left: 1px solid #d2d2d2;
+    border-right: 1px solid #d2d2d2;
+    padding: 10px;
+}
+
+.yeelow .goodsData  .goodsItem .goodinfo .price{
+    color: #ff684d;
+    font-size: 18px;
+
+}
