@@ -22,6 +22,107 @@ export function updatePassword(data) {
     return axios.post('/user/update',data)
 }
 
+// 每日一卦
+export function getDailyHexagrams(data) {
+    return axios.post("/daily/hexagram/findByModal",data)
+}
+
+export function createDailyHexagram(data) {
+    return axios.post("/daily/hexagram/add",data)
+}
+
+export function deleteDailyHexagram(id) {
+    return axios.post("/daily/hexagram/delete?id="+id)
+}
+
+export function updateDailyHexagram(data) {
+    return axios.post("/daily/hexagram/update",data)
+}
+
+// 消息管理
+export function getMessages(data) {
+    return axios.post("/message/findByModal",data)
+}
+
+export function createMessage(data) {
+    return axios.post("/message/add",data)
+}
+
+export function deleteMessage(id) {
+    return axios.post("/message/delete?id="+id)
+}
+
+export function updateMessageStatus(data) {
+    return axios.post("/message/update",data)
+}
+
+// 用户档案
+export function getUserProfiles(data) {
+    return axios.post("/user/profile/findByModal",data)
+}
+
+export function createUserProfile(data) {
+    return axios.post("/user/profile/add",data)
+}
+
+export function deleteUserProfile(id) {
+    return axios.post("/user/profile/delete?id="+id)
+}
+
+export function updateUserProfile(data) {
+    return axios.post("/user/profile/update",data)
+}
+
+// 生肖结果
+export function getZodiacs(data) {
+    return axios.post("/zodiac/findByModal",data)
+}
+
+export function createZodiac(data) {
+    return axios.post("/zodiac/add",data)
+}
+
+export function deleteZodiac(id) {
+    return axios.post("/zodiac/delete?id="+id)
+}
+
+export function updateZodiac(data) {
+    return axios.post("/zodiac/update",data)
+}
+
+// MBTI题目
+export function getQuestions(data) {
+    return axios.post("/question/findByModal",data)
+}
+
+export function createQuestion(data) {
+    return axios.post("/question/add",data)
+}
+
+export function deleteQuestion(id) {
+    return axios.post("/question/delete?id="+id)
+}
+
+export function updateQuestion(data) {
+    return axios.post("/question/update",data)
+}
+
+// MBTI选项
+export function getOptions(data) {
+    return axios.post("/options/findByModal",data)
+}
+
+export function createOption(data) {
+    return axios.post("/options/add",data)
+}
+
+export function deleteOption(id) {
+    return axios.post("/options/delete?id="+id)
+}
+
+export function updateOption(data) {
+    return axios.post("/options/update",data)
+}
 
 // 用户管理
 export function getUserList(data) {

@@ -49,28 +49,19 @@ const loading = ref(false)
 // 提交登录按钮
 const onSubmit = () => {
     // 表单验证
-    refForForm.value.validate((valid) => {
-        if (!valid) {
-            return false;
-        } else {
-            loading.value = true
-
-            createUser(form).then(res =>{
+    createUser(form).then(res =>{
                 if (res.code !== 200) {
                     toast(res.message,"error")
                     return;
                 }else {
                     toast("注册成功请登录！");
-                    router.push("/login") 
+                    router.push("/login")
                 }
-                
-               
-            }).finally(()=>{
-                loading.value = false
-            })
-        }
 
-    })
+
+            }).finally(()=>{
+
+            })
 }
 
 // 监听回车事件
@@ -93,78 +84,185 @@ onBeforeMount(()=>{
 
 
 <template>
- <div class="bg-indigo-500 bigbox">
-    <div class="boxs">
-    <el-row class="">
-        <el-col :span="16" class="leftbox bg-indigo-500 flex items-center justify-center">
-            <div class="p-20">
-                <div class="font-bold text-4xl text-light-50 mb-4">欢迎光临</div>
-                <div class=" text-gray-50 text-sm">这里是爻辞阁后台管理系统，请输入账号密码进行登录本站！</div>
+   <div class="app-container">
+        <div class="login-box">
+            <h2 class="login-title">爻辞阁后台管理系统</h2>
+            <div class="register-link">
+                <a href="javascript:;" @click="router.push('/login')">已有账号？登录</a>
             </div>
-        </el-col>
-        <el-col :span="8" class=" bg-light-50 flex items-center justify-center">
-            <div class="p-20">
-                <h2 class="text-3xl text-gray-800 font-bold flex items-center justify-center">欢迎加入</h2>
-                <div class="flex items-center justify-center my-5 text-gray-300 space-x-2">
-                    <span class="h-[1px] w-16 bg-gray-200"></span>
-                    <span>填写基本信息</span>
-                    <span class="h-[1px] w-16 bg-gray-200"></span>
-                </div>
-                <el-form :model="form" class="w-[250px]" :rules="rules" ref="refForForm">
-                    <el-form-item prop="userName">
-                        <el-input v-model="form.userName" placeholder="请输入用户名" />
-                    </el-form-item>
-
-                    <el-form-item prop="password">
-                        <el-input type="password" v-model="form.password" placeholder="请输入密码" show-password />
-                    </el-form-item>
-
-                    <el-form-item prop="email">
-                        <el-input  v-model="form.email" placeholder="请输入邮箱"  />
-                    </el-form-item>
-
-                    <el-form-item prop="phone">
-                        <el-input  v-model="form.phone" placeholder="请输入手机号" />
-                    </el-form-item>
-                    <el-form-item prop="roleId">
-                    <el-select v-model="form.roleId" placeholder="请选择权限" class="w-[250px]">
-                        <el-option label="管理员" value="1">
-                        </el-option>
-                    </el-select>
-                </el-form-item>
-
-                <div class="my-2 mb-2" style="font-size: 13px;cursor: pointer;"><router-link to="/login">已有账号？点我登录</router-link></div>
-                    <el-form-item>
-                        <el-button color="#626aef" round class="w-[250px]" type="primary" @click="onSubmit" :loading="loading">注册</el-button>
-                    </el-form-item>
-                </el-form>
+            <div class="input-group">
+                <label for="username">账号</label>
+                <input type="text" id="username" placeholder="请输入账号" v-model="form.userName">
             </div>
-        </el-col>
-    </el-row>
-  </div>
- </div>
+            <div class="input-group">
+                <label for="password">密码</label>
+                <input type="password" id="password" placeholder="请输入密码" v-model="form.password">
+            </div>
+            <div class="input-group">
+                <label for="username">邮箱</label>
+                <input type="text" id="username" placeholder="请输入邮箱" v-model="form.email">
+            </div>
+            <div class="input-group">
+                <label for="username">手机号</label>
+                <input type="text" id="username" placeholder="请输入手机号" v-model="form.phone">
+            </div>
+            <div class="input-group">
+                <label for="permission">选择权限</label>
+                <select id="permission" v-model="form.roleId">
+                    <option value="1">管理员</option>
+                    <option value="2">学生</option>
+                </select>
+            </div>
+            <button class="login-button" @click="onSubmit">注册</button>
+        </div>
+    </div>
 </template>
 
 <style scoped>
-    .leftbox {
-        background: url(../assets/sobg.jpeg) no-repeat;
-    }
-
-    
-.boxs {
-    /* margin: 200px auto; */
-    width: 900px;
-    border-radius: 15px;
-    transform: scale(1.5);
-
+/* 整体容器样式 */
+.app-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url(../assets/cao.png) center/cover no-repeat;
+    /* 你可以替换为实际的中草药背景图片 */
+    animation: fadeInBackground 1s ease;
 }
 
-.bigbox {
-    margin: 0;
+@keyframes fadeInBackground {
+    from {
+        opacity: 0.5;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* 登录框容器样式 */
+.login-box {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px 60px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    width: 450px;
+    animation: slideIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* 登录框装饰元素 */
+.login-box::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    left: -100px;
+    width: 200px;
+    height: 200px;
+    background: rgba(106, 153, 78, 0.1);
+    border-radius: 50%;
+    animation: float 5s infinite alternate;
+}
+
+@keyframes float {
+    from {
+        transform: translate(0, 0);
+    }
+
+    to {
+        transform: translate(20px, 20px);
+    }
+}
+
+/* 标题样式 */
+.login-title {
+    text-align: center;
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 30px;
+    font-family: '宋体', serif;
+    letter-spacing: 3px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 输入组样式 */
+.input-group {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.input-group label {
+    display: block;
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.input-group input,
+.input-group select {
     width: 100%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: 15px 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    border-color: #6a994e;
+    outline: none;
+    box-shadow: 0 0 10px rgba(106, 153, 78, 0.2);
+}
+
+/* 注册链接样式 */
+.register-link {
+    text-align: right;
+    margin-bottom: 25px;
+}
+
+.register-link a {
+    color: #6a994e;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.register-link a:hover {
+    color: #386641;
+}
+
+/* 登录按钮样式 */
+.login-button {
+    width: 100%;
+    padding: 15px;
+    background-color: #6a994e;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 5px 15px rgba(106, 153, 78, 0.3);
+}
+
+.login-button:hover {
+    background-color: #386641;
+    box-shadow: 0 5px 20px rgba(56, 102, 65, 0.4);
 }
 </style>

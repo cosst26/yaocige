@@ -60,6 +60,78 @@ const asideMenus = [
                 frontpath: "/comment"
             },
         ]
+    },
+    {
+        id: 5,
+        name: '每日一卦管理',
+        con: 'location',
+        child: [
+            {
+                id: 0,
+                name: '每日一卦列表',
+                frontpath: "/dailyHexagram"
+            },
+        ]
+    },
+    {
+        id: 6,
+        name: '消息管理',
+        con: 'location',
+        child: [
+            {
+                id: 0,
+                name: '消息列表',
+                frontpath: "/message"
+            },
+        ]
+    },
+    {
+        id: 7,
+        name: '用户档案管理',
+        con: 'location',
+        child: [
+            {
+                id: 0,
+                name: '用户档案列表',
+                frontpath: "/userProfile"
+            },
+        ]
+    },
+    {
+        id: 8,
+        name: '生肖结果管理',
+        con: 'location',
+        child: [
+            {
+                id: 0,
+                name: '生肖结果列表',
+                frontpath: "/zodiac"
+            },
+        ]
+    },
+    {
+        id: 9,
+        name: 'MBTI题管理',
+        con: 'location',
+        child: [
+            {
+                id: 0,
+                name: 'MBTI题列表',
+                frontpath: "/question"
+            },
+        ]
+    },
+    {
+        id: 10,
+        name: 'MBTI选项管理',
+        con: 'location',
+        child: [
+            {
+                id: 0,
+                name: 'MBTI选项列表',
+                frontpath: "/options"
+            },
+        ]
     }
 ]
 
