@@ -1,0 +1,509 @@
+.base {
+    background-color: #fff;
+}
+
+.topinfo {
+    background-color: #fff;
+    padding: 20px;
+    display: flex;
+    margin-top: 20px;
+    height: 282px;
+}
+
+.topinfo .left {
+    width: 320px;
+    height: 240px;
+    margin-right: 20px;
+}
+
+.topinfo .left img {
+    width: 100%;
+    height: 100%;
+}
+
+.topinfo .right{
+    flex: 1;
+}
+
+.topinfo .right .nametop .name  {
+    font-size: 20px;
+    color: #42647f;
+    font-weight: 700;
+}
+
+.topinfo .right .nametop .adress  {
+    font-size: 12px;
+    color: #8a9ca8;
+    margin-top: 5px;
+   
+}
+
+.topinfo .right .imgs {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 34px;
+}
+
+.topinfo .right .imgs img {
+    width: 100px;
+    height: 75px;
+}
+
+.middle_box {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    gap: 20px;
+}
+
+.middle_box .left_box {
+    width: 990px;
+    /* border:1px solid #333; */
+}
+
+
+.middle_box .right_box {
+    width: 347px;
+    /* border:1px solid #333; */
+}
+
+.tabs {
+    display: flex;
+    align-items: center;
+    background-color: #698496;
+    transition: .05s;
+}
+
+.tab {
+    width: 88px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #fff;
+}
+
+.tab.active {
+    background-color: #fff;
+    color: #698496;
+}
+
+.content section {
+    /* height: 400px; */
+    display: none;
+    padding: 10px;
+    background-color: #fff;
+    
+}
+
+.content section h1 {
+    margin-bottom: 10px;
+}
+
+.content section.active {
+    display: block;
+}
+
+.search_line {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    height:60px;
+    border-bottom: 1px solid #ddd;
+}
+
+.search_line .sear_item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search_line .sear_item span {
+    font-size: 14px;
+}
+
+.search_line .sear_item  input {
+    width: 186px;
+    height: 27px;
+}
+
+.search_line button {
+    width: 60px;
+    height: 24px;
+    line-height: 24px;
+    color: #fff;
+    text-align: center;
+    background-color: #63b8f0;
+   
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+     border-bottom: 3px solid #3aa6ee;
+}
+
+.room_item {
+    width: 100%;
+    height: 60px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.room_item .left .name {
+    font-size: 14px;
+    color: #42647f;
+    margin-bottom: 5px;
+}
+
+.room_item .left .lables {
+    font-size: 12px;
+    color: #42647f;
+}
+
+.room_item:last-child{
+    border-bottom: 1px solid #fff;
+}
+
+.room_item .right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.room_item .right .price {
+    font-size: 24px;
+    color: #ff5741;
+}
+
+.room_item .right button {
+    width: 115px;
+    height: 34px;
+    color: #fff;
+    background-color: #63b8f0;
+    border: none;
+    text-align: center;
+    line-height: 34px;
+    border-radius: 4px;
+    cursor: pointer;
+    border-bottom: 4px solid #3aa6ee;
+}
+
+
+.right_box .baozhang {
+    padding: 15px;
+    width: 100%;
+    height: 300px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+.right_box .baozhang .titles {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 8px;
+    text-align: center;
+
+}
+
+.right_box .baozhang .titles .title1 {
+    font-size: 16px;
+    color: #42647f;
+    font-weight: 700;
+}
+
+.right_box .baozhang .titles .smalltitle {
+    font-size: 10px;
+    color: #42647f;
+    
+}
+
+
+.right_box .baozhang .uls {
+    padding: 10px;
+}
+
+.right_box .baozhang .uls .ulitem {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.right_box .baozhang .uls .ulitem .icons{
+    margin-right: 20px;
+    font-size: 16px;
+    color: #42647f;
+}
+
+.right_box .baozhang .uls .ulitem .contents .name {
+    font-size: 14px;
+    color: #6381a3;
+    margin-bottom: 5px;
+}
+
+
+.right_box .baozhang .uls .ulitem .contents .namelabel {
+    font-size: 12px;
+    color: #8da3bc;
+
+}
+
+
+.right_box .cars {
+    width: 100%;
+    height: 137px;
+    margin-bottom: 20px;
+}
+
+.right_box .cars img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    
+}
+
+
+.top_search {
+    background-color: #eff2f5;
+    display: flex;
+    align-items: center;
+    height: 56px;
+    padding: 0 20px;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+.top_search .area{
+    width: 140px;
+    height: 30px;
+    margin-right: 40px;
+}
+
+.top_search .area input{
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding-left: 5px;
+    border-radius: 4px;
+    outline: none;
+}
+
+.top_search .input {
+    width: 190px;
+    height: 30px;
+    margin: 0 20px;
+    display: flex;
+    align-items: center;
+}
+
+.top_search .input input {
+    width: 140px;
+    height: 30px;
+    border: 1px solid #ddd;
+    padding-left: 5px;
+    border-radius: 4px;
+    outline: none;
+    margin-right: 10px;
+}
+
+.top_search .input span {
+    font-size: 14px;
+}
+
+.top_search .biginput {
+    width: 230px;
+    height: 30px;
+    margin: 0 20px;
+    display: flex;
+    align-items: center;
+}
+
+.top_search .biginput input {
+    width: 230px;
+    height: 30px;
+    border: 1px solid #ddd;
+    padding-left: 5px;
+    border-radius: 4px;
+    outline: none;
+    margin-right: 10px;
+}
+
+.top_search button {
+    width: 100px;
+    height: 30px;
+    background-color: #3aa6ee;
+    color: #fff;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+}
+
+
+.type_link {
+    border: 1px solid #ddd;
+    padding: 10px;
+    color: #8a8a8a;
+    font-size: 12px;
+}
+
+.type_link div{
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.type_link span {
+    margin-right: 20px;
+}
+
+.type_link div ul {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.type_link div ul li {
+    padding: 6px 12px;
+   
+    cursor: pointer;
+}
+
+.type_link div ul li.liactive {
+    background-color: #96a9b5;
+    color: #fff;
+}
+
+#list_num {
+   color: #ff4b34;
+   margin: 0 10px;
+}
+
+
+.slot {
+    background-color: #42647f;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 30px;
+    font-size: 12px;
+    padding: 0 10px;
+    margin: 15px 0;
+}
+
+.slot .btns {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    gap: 35px;
+    cursor: pointer;
+}
+
+.slot .btns li i {
+    margin-left: 5px;
+    font-size:10px;
+}
+
+.room_itemz {
+    height: 180px;
+    width: 100%;
+    display: flex;
+
+    
+}
+
+.room_itemz .img {
+    width: 180px;
+    height: 120px;
+    margin-right: 20px;
+}
+
+.room_itemz .img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.room_itemz .right_info {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.right_info .middle {
+    display: flex;
+    align-items: flex-start;
+}
+
+.right_info .middle .index {
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background-color: #48a7e9;
+    color: #fff;
+    border-radius: 100%;    
+    
+}
+
+.right_info .middle .na .names {
+    font-size: 20px;
+    color: #48a7e9;
+    display: flex;
+}
+
+.right_info .middle .na .address {
+    font-size: 12px;
+    color: #96a9b5;
+}
+
+.right_info .middle .na .labels {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.right_info .middle .na .labels span {
+    padding: 5px 4px;
+    background-color: tomato;
+    color: #fff;
+    font-size: 12px;
+    border-radius: 4px;
+    margin: 10px 0;
+}
+
+.right_info .side {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 12px;
+}
+
+.right_info .side .com_num .top {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #000;
+}
+
+.right_info .side .com_num .bottom {
+    color: #8a9ca8;
+}
+
+.right_info .side button {
+    width: 100px;
+    height: 36px;
+    text-align: center;
+    line-height: 36px;
+    border: none;
+    background-color: #48a7e9;
+    color: #fff;
+    font-size: 14px;
+    border-bottom: 4px solid #2d95e0;
+    border-radius: 4px;
+}

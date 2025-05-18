@@ -1,0 +1,152 @@
+#header {
+    width: 100%;
+    
+}
+
+.header-top-wrapper {
+    border-bottom: 1px solid #ddd;
+    width: 100%;
+    background-color: #f2f2f2;
+}
+
+.top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    height: 26px;
+  
+    line-height: 26px;
+   
+}
+
+.top .left {
+    display: flex;
+    align-items: center;
+}
+
+.top .left .icon {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.top .left .icon p {
+    color: #6c6c6c;
+}
+
+.top .left .icon i {
+    color: #ffc300;
+    margin-right: 5px;
+}
+
+.top .left .label {
+    color: #aaa;
+    margin-right: 10px;
+}
+
+.top .left .log {
+    color: #6c6c6c;
+
+}
+
+
+.top .right ul {
+    display: flex;
+    align-items: center;
+}
+
+.top .right ul li {
+    margin: 0px 14px 0px 0px;
+}
+
+.top .right ul li a {
+    color: #6c6c6c;
+}   
+
+.top .right ul li a:hover {
+    color: var(--basecolor);
+}
+
+
+.middle {
+    display: flex;
+    height: 126px;
+    align-items: center;
+  
+}
+
+.middle .logo img {
+    width: 154px;
+    height: 53px;
+}
+
+.middle .search {
+    width: 664px;
+    height: 36px;
+    border: 2px solid #ffc300;
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+    padding-left: 5px;
+}
+
+.middle .search input {
+    width: 566px;
+    height: 100%;
+    border: none;
+    outline: none;
+   
+}
+
+.middle .search button {
+   display: flex;
+   align-items: center;
+   flex: 1;
+   height: 100%;
+   border: none;
+   justify-content: center;
+   gap: 10px;
+   cursor: pointer;
+   font-size: 16px;
+   color: #333;
+   padding: 5px;
+   background-image: linear-gradient(90deg,#FFE700 0,#FFC900 100%);
+   
+}
+
+
+.bar {
+    width: 100%;
+    background-color: #ffc300;
+    height: 36px;
+    display: flex;
+    align-items: center;
+}
+
+.bar ul {
+    display: flex;
+    align-items: center;
+    line-height: 25px;
+    gap: 35px;
+
+}
+
+.bar ul li {
+    min-width: 50px;
+    height: 25px;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.bar ul li a {
+    color: #6c6c6c;
+}
+
+.bar ul li.active {
+    background-color: #fff;
+}
+
+
+
+
