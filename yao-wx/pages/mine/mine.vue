@@ -22,11 +22,11 @@
 		<view style="margin-top: 10px;padding: 0 20rpx;border-radius: 15px;">
 			<view style="display: flex;align-items: center;justify-content: space-between;">
 				<view style="display: flex;align-items: center;gap: 10px;">
-					<image src="/static/cap.png" mode="" style="width: 100rpx;height: 100rpx;border-radius: 100%;">
+					<image :src="userData.avatar" mode="" style="width: 100rpx;height: 100rpx;border-radius: 100%;">
 					</image>
 					<view>
-						<view style="margin-bottom: 5px;font-size: 15px;font-weight: 700;">user</view>
-						<view style="font-size: 13px;color: #666;">ID:111111111</view>
+						<view style="margin-bottom: 5px;font-size: 15px;font-weight: 700;">{{userData.userName}}</view>
+						<view style="font-size: 13px;color: #666;">ID:{{userData.id}}</view>
 					</view>
 				</view>
 				<u-icon slot="icon" size="38" name="setting" color="#666"></u-icon>

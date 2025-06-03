@@ -2,7 +2,7 @@ import App from './App'
 import uView from 'uview-ui';
 import store from './store/index.js'
 Vue.use(uView)
-Vue.prototype.$elyasApi = 'http://t3s9140079.goho.co/'
+Vue.prototype.$elyasApi = 'http://localhost:7007/'
 
  import tabBar from "@/common/tabBar.vue"
 Vue.component('tabBar', tabBar)

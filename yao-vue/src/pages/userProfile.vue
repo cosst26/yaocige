@@ -22,14 +22,21 @@
 
     <!-- 表格 -->
     <el-table :data="userProfiles" stripe style="width: 100%">
-      <el-table-column prop="user_name" label="昵称" align="center" />
+      <el-table-column prop="userName" label="昵称" align="center" />
       <el-table-column prop="relationship" label="关系" align="center" />
       <el-table-column prop="sex" label="性别" align="center">
         <template #default="scope">
           <span>{{ scope.row.sex === 0 ? '女' : '男' }}</span>
         </template>
       </el-table-column>
-      <el-table-column prop="birthday" label="出生日期" align="center" />
+      
+      <el-table-column prop="birthday" label="出生日期" align="center">
+        <template #default="scope">
+          <span>{{ dateString(scope.row.birthday) }}</span>
+        </template>
+      </el-table-column>
+
+
       <el-table-column prop="place" label="出生地点" align="center" />
       <el-table-column prop="residence" label="现居地" align="center" />
       <el-table-column label="操作" align="center">
@@ -60,8 +67,8 @@
       :close-on-click-modal="false"
     >
       <el-form :model="form" :rules="rules" ref="formRef" label-width="120px">
-        <el-form-item label="昵称" prop="user_name">
-          <el-input v-model="form.user_name" placeholder="请输入昵称" />
+        <el-form-item label="昵称" prop="userName">
+          <el-input v-model="form.userName" placeholder="请输入昵称" />
         </el-form-item>
         <el-form-item label="关系" prop="relationship">
           <el-input v-model="form.relationship" placeholder="请输入关系" />
@@ -98,7 +105,7 @@
 
 <script setup>
 import { ref, reactive, computed } from 'vue';
-import { toast, messageBox } from '~/composables/util';
+import { toast, dateString, messageBox } from "~/composables/util"
 import { Plus, Refresh } from '@element-plus/icons-vue';
 import {
   getUserProfiles,
@@ -126,7 +133,7 @@ const dialogTitle = ref('');
 // 表单数据
 const form = reactive({
   id: null,
-  user_name: '',
+  userName: '',
   relationship: '',
   sex: null,
   birthday: null,
@@ -135,7 +142,7 @@ const form = reactive({
 });
 // 表单验证规则
 const rules = {
-  user_name: [
+  userName: [
     { required: true, message: '请输入昵称', trigger: 'blur' }
   ],
   relationship: [
@@ -163,7 +170,7 @@ const fetchUserProfiles = async () => {
     const res = await getUserProfiles({
       page: currentPage.value,
       limit: pageSize.value,
-      user_name: searchUserName.value,
+      userName: searchUserName.value,
       sex: searchSex.value
     });
     userProfiles.value = res.data.list;
@@ -183,7 +190,7 @@ const handlePageChange = (page) => {
 const openAddModal = () => {
   dialogTitle.value = '新增用户档案';
   form.id = null;
-  form.user_name = '';
+  form.userName = '';
   form.relationship = '';
   form.sex = null;
   form.birthday = null;
@@ -196,7 +203,7 @@ const openAddModal = () => {
 const openEditModal = (row) => {
   dialogTitle.value = '编辑用户档案';
   form.id = row.id;
-  form.user_name = row.user_name;
+  form.userName = row.userName;
   form.relationship = row.relationship;
   form.sex = row.sex;
   form.birthday = row.birthday;

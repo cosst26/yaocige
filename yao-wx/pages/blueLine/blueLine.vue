@@ -5,16 +5,13 @@
 		
 		<!-- 内容区域 -->
 		<view class="content-area">
-			<view class="title" style="text-align: center;">卦辞原文</view>
-			<view class="text">乾：元亨、利贞。</view>
+			<view class="title" style="text-align: center;">{{isData.title}}</view>
+			<view class="text">作者：{{isData.author}}</view>
 			
-			<view class="title" style="text-align: center;">卦辞译文</view>
+			
 			<view class="translation">
-				这个卦是同卦(下乾上乾)相叠。象征天，喻龙(德才的君子)，又象征纯粹的阳和健，表明兴盛强健。乾卦是根据万物变通的道理，以"元、亨、利、贞"为卦辞,表示吉祥如意，教导人遵守天道的德行。
-				<view class="paragraph">大象：天行刚健，自强不息。</view>
-				<view class="paragraph">运势：飞龙在天，名利双收之象,宜把握机会，争取成果。</view>
-				<view class="paragraph">事业：大吉大利，万事如意，心想事成，自有天佑，春风得意，事业如日中天。但阳气已达顶点，盛极必衰，务须提高警惕，小心谨慎。力戒骄傲，冷静处世，心境平和，如是则能充分发挥才智，保证事业成功。</view>
-				<view class="paragraph">经商：十分顺利，有发展向上的大好机会。但切勿操之过急，宜冷静分析形势，把握时机，坚持商业道德，冷静对待中途出现的困难，定</view>
+				{{isData.content}}
+				
 			</view>
 		</view>
 	</view>
@@ -24,11 +21,30 @@
 	export default {
 		data() {
 			return {
-				
+				isData:{}
 			}
 		},
+		onLoad(option) {
+			this.getData(option.id)
+		},
 		methods: {
-			
+			getData(ids){
+				uni.request({
+					url:this.$elyasApi+'daily/hexagram/detail?id='+ids,
+					method:'POST',
+					data:{},
+					header:{
+					    "content-type":"application/json"
+					},
+					success:(data)=> {	
+						
+						this.isData = data.data.data
+								
+						
+					}
+					
+				})
+			}
 		}
 	}
 </script>

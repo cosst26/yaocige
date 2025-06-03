@@ -8,64 +8,6 @@
 	    },
 	"pages": [ 
 		{
-			"path" : "pages/narutoPage/narutoPage",
-			"style" : 
-			{
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path" : "pages/dogPage/dogPage",
-			"style" : 
-			{
-				 "navigationStyle": "custom"
-			}
-		},
-		{
-			"path" : "pages/boxsPage/boxsPage",
-			"style" : 
-			{
-				 "navigationStyle": "custom"
-			}
-		},
-		{
-			"path" : "pages/blueLine/blueLine",
-			"style" : 
-			{
-				 "navigationStyle": "custom"
-			}
-		},
-		{
-			"path" : "pages/examination/examination",
-			"style" : 
-			{
-				 "navigationStyle": "custom"
-			}
-		},
-		{
-			"path" : "pages/purple/purple",
-			"style" : 
-			{
-				 "navigationStyle": "custom"
-			}
-		},
-		
-		{
-			"path": "pages/index/index",
-			"style": {
-				
-				"navigationStyle": "custom"
-				
-			}
-		},
-		{
-			"path" : "pages/articleDetail/articleDetail",
-			"style" : 
-			{
-				"navigationBarTitleText" : "文章标题"
-			}
-		},
-		{
 		    "path" : "pages/login/login",
 		    "style" :                                                                                    
 		    {
@@ -75,6 +17,65 @@
 				
 		    }
 		    
+		},
+		
+		{
+			"path" : "pages/narutoPage/narutoPage",
+			"style" : 
+			{
+				 "navigationBarTitleText" : "生辰"
+			}
+		},
+		{
+			"path" : "pages/dogPage/dogPage",
+			"style" : 
+			{
+				 "navigationBarTitleText" : "生肖"
+			}
+		},
+		{
+			"path" : "pages/boxsPage/boxsPage",
+			"style" : 
+			{
+				 "navigationBarTitleText" : "星座"
+			}
+		},
+		{
+			"path" : "pages/blueLine/blueLine",
+			"style" : 
+			{
+				 "navigationBarTitleText" : "详情"
+			}
+		},
+		{
+			"path" : "pages/examination/examination",
+			"style" : 
+			{
+				  "navigationBarTitleText" : "MBTI"
+			}
+		},
+		{
+			"path" : "pages/purple/purple",
+			"style" : 
+			{
+				  "navigationBarTitleText" : "紫薇"
+			}
+		},
+		
+		{
+			"path": "pages/index/index",
+			"style": {
+				
+				 "navigationBarTitleText" : "主页"
+				
+			}
+		},
+		{
+			"path" : "pages/articleDetail/articleDetail",
+			"style" : 
+			{
+				"navigationBarTitleText" : "文章标题"
+			}
 		},
 		
 		
@@ -155,6 +156,27 @@
         	"style" : 
         	{
         		"navigationBarTitleText" : ""
+        	}
+        },
+        {
+        	"path" : "pages/t/t",
+        	"style" : 
+        	{
+        		"navigationBarTitleText" : ""
+        	}
+        },
+        {
+        	"path" : "pages/suanbu/suanbu",
+        	"style" : 
+        	{
+        		"navigationBarTitleText" : "每日一卦"
+        	}
+        },
+        {
+        	"path" : "pages/mineData/mineData",
+        	"style" : 
+        	{
+        		"navigationBarTitleText" : "生肖"
         	}
         }
        

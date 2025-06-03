@@ -14,7 +14,7 @@
       
 
       <view class="user-info">
-        <text class="username" style="font-size: 20px;color: #fff;">陈先生</text>
+        <text class="username" style="font-size: 20px;color: #fff;">{{userData.userName}} 先生</text>
         <text class="mood"> · 今日心情</text>
       </view>
       
@@ -51,10 +51,41 @@
     
 
     <view class="function-grid">
-      <view class="grid-item" v-for="item in functions" :key="item.name">
+      <view class="grid-item" @click="suanbu">
         <image class="grid-icon" src="/static/typeimages/vip.png" mode="aspectFit"></image>
-        <text class="grid-text">{{ item.name }}</text>
+        <text class="grid-text">每日一卦</text>
       </view>
+	  
+	  <view class="grid-item" @click="mbti">
+	    <image class="grid-icon" src="/static/typeimages/vip.png" mode="aspectFit"></image>
+	    <text class="grid-text">MBTI</text>
+	  </view>
+	  
+	  <view class="grid-item" @click="sheng">
+	    <image class="grid-icon" src="/static/typeimages/vip.png" mode="aspectFit"></image>
+	    <text class="grid-text">生肖</text>
+	  </view>
+	  
+	  
+	  <view class="grid-item" @click="xingzuo">
+	    <image class="grid-icon" src="/static/typeimages/vip.png" mode="aspectFit"></image>
+	    <text class="grid-text">星座</text>
+	  </view>
+	  
+	  
+	  <view class="grid-item" @click="toPurple">
+	    <image class="grid-icon" src="/static/typeimages/vip.png" mode="aspectFit"></image>
+	    <text class="grid-text">紫薇</text>
+	  </view>
+	  
+	  <view class="grid-item" @click="toNarotu">
+	    <image class="grid-icon" src="/static/typeimages/vip.png" mode="aspectFit"></image>
+	    <text class="grid-text">生辰</text>
+	  </view>
+	  
+	  
+	  
+	  
     </view>
 	
 	
@@ -73,9 +104,9 @@
 	        v-for="(item, index) in categories" 
 	        :key="index"
 	        :class="{ active: currentCategory === index }"
-	        @click="changeCategory(index)"
+	        @click="changeCategory(index,item.id)"
 	      >
-	        <text>{{ item }}</text>
+	        <text>{{ item.name}}</text>
 	      </view>
 	    </scroll-view>
 	
@@ -85,18 +116,18 @@
 	        class="post-item" 
 	        v-for="(post, index) in posts" 
 	        :key="index"
-			@click="toArticleDetail"
+			@click="toArticleDetail(post.id)"
 	      >
-	        <image class="post-image" src="/static/adaf2edda3cc7cd9f3006fa7dffd8631b90e91ae.jpeg" mode="aspectFill"></image>
+	        <image class="post-image" :src="post.imgUrl" mode="aspectFill"></image>
 	        <text class="post-title">{{ post.title }}</text>
 	        <view class="post-footer">
 	          <view class="user-info">
 	            <image class="avatar" src="/static/newicons/avatar.png" mode="aspectFill"></image>
-	            <text class="username">{{ post.username }}</text>
+	            <text class="username">{{ post.userName }}</text>
 	          </view>
 	          <view class="like-info">
 	            <u-icon name="thumb-up" size="28" color="#999"></u-icon>
-	            <text class="like-count">{{ post.likeCount }}</text>
+	            <text class="like-count">10</text>
 	          </view>
 	        </view>
 	      </view>
@@ -132,48 +163,118 @@ export default {
       ],
 	  
 	        currentCategory: 0,
-	        categories: ['关注', '推荐', '星座', '测试', '心理', '交友'],
+	        categories: [],
 	        posts: [
-	          {
-	            image: '/static/post1.jpg',
-	            title: '如何保持心理健康？这些小技巧很实用',
-	            avatar: '/static/avatar1.jpg',
-	            username: '心理专家',
-	            likeCount: 245
-	          },
-	          {
-	            image: '/static/post2.jpg',
-	            title: '星座运势：本周水瓶座将迎来转机',
-	            avatar: '/static/avatar2.jpg',
-	            username: '星座达人',
-	            likeCount: 189
-	          },
-	          {
-	            image: '/static/post3.jpg',
-	            title: '心理测试：测测你的抗压能力有多强',
-	            avatar: '/static/avatar3.jpg',
-	            username: '测试君',
-	            likeCount: 312
-	          },
-	          {
-	            image: '/static/post4.jpg',
-	            title: '交友指南：如何建立健康的人际关系',
-	            avatar: '/static/avatar4.jpg',
-	            username: '社交顾问',
-	            likeCount: 156
-	          }
-	        ]
+	          
+	        ],
+			postpar:{
+				page:1,
+				limit:999,
+				articleTypeId:''
+			},
+			userData:{}
     }
   },
+  onLoad() {
+  	this.getCate()
+	this.getArticle()
+	this.getUserInfoByToken()
+  },
    methods: {
-      changeCategory(index) {
+	   toNarotu(){
+		 uni.navigateTo({
+		 	url:'/pages/narutoPage/narutoPage'
+		 })  
+	   },
+	   toPurple(){
+		 uni.navigateTo({
+		 	url:'/pages/purple/purple'
+		 })  
+	   },
+	   xingzuo(){
+		 uni.navigateTo({
+		 	url:'/pages/boxsPage/boxsPage'
+		 })  
+	   },
+	   sheng(){
+		 uni.navigateTo({
+		 	url:'/pages/dogPage/dogPage'
+		 })  
+	   },
+	   mbti(){
+		   uni.navigateTo({
+		   	url:'/pages/examination/examination'
+		   })
+	   },
+	   suanbu(){
+		   uni.navigateTo({
+		   	url:'/pages/suanbu/suanbu'
+		   })
+	   },
+	   getArticle(){
+		   uni.request({
+		   	url:this.$elyasApi+'article/findByModal',
+		   	method:'POST',
+		   	data:this.postpar,
+		   	header:{
+		   	    "content-type":"application/json"
+		   	},
+		   	success:(data)=> {	
+		   		
+		   		this.posts = data.data.data.list
+		   				
+		   		
+		   	}
+		   	
+		   })
+	   },
+	   getCate(){
+		   uni.request({
+		   	url:this.$elyasApi+'article/type/findByModal',
+		   	method:'POST',
+		   	data:{},
+		   	header:{
+		   	    "content-type":"application/json"
+		   	},
+		   	success:(data)=> {	
+		   		
+		   		this.categories = data.data.data.list
+				this.categories.unshift({name:'全部',id:''})
+		   		
+		   	}
+		   	
+		   })
+	   },
+      changeCategory(index,id) {
         this.currentCategory = index;
+		this.postpar.articleTypeId = id
+		this.getArticle()
         
       },
-	  toArticleDetail(){
+	  toArticleDetail(id){
 		  uni.navigateTo({
-		  	url:'/pages/articleDetail/articleDetail'
+		  	url:'/pages/articleDetail/articleDetail?id='+id
 		  })
+	  },
+	  getUserInfoByToken() {
+	  	uni.request({
+	  		url: this.$elyasApi + 'user/detailByToken',
+	  		method: 'POST',
+	  		data: {},
+	  		header: {
+	  			"content-type": "application/json",
+	  			"accessToken": uni.getStorageSync('token')
+	  		},
+	  		success: (data) => {
+	  
+	  			this.userData = data.data.data;
+	  
+	  
+	  
+	  
+	  		}
+	  
+	  	});
 	  }
     }
 }
@@ -364,7 +465,7 @@ page {
   box-shadow: 0 10rpx 30rpx rgba(0, 0, 0, 0.1); 
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   position: relative;
   z-index: 2;
 }

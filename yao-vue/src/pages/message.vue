@@ -28,7 +28,7 @@
         </template>
       </el-table-column>
       <el-table-column prop="content" label="消息内容" align="center" />
-      <el-table-column prop="received_by" label="接受人" align="center" />
+      <el-table-column prop="receivedBy" label="接受人" align="center" />
       <el-table-column label="操作" align="center">
         <template #default="scope">
           <el-button type="primary" size="small" v-if="scope.row.status === 0" @click="markAsRead(scope.row.id)">标记已读</el-button>
@@ -66,9 +66,17 @@
         <el-form-item label="消息内容" prop="content">
           <el-input type="textarea" v-model="form.content" placeholder="请输入消息内容" />
         </el-form-item>
-        <el-form-item label="接受人" prop="received_by">
-          <el-input v-model="form.received_by" placeholder="请输入接受人" />
-        </el-form-item>
+        
+
+          <el-form-item prop="receivedBy" label="接受人">
+                    <el-select v-model="form.receivedBy" placeholder="接受人">
+                        <el-option v-for="item in ulist" :key="item.id" :label="item.userName" :value="item.id">
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+
+
+
       </el-form>
       <template #footer>
         <span class="dialog-footer">
@@ -87,6 +95,7 @@ import { Plus, Refresh } from '@element-plus/icons-vue';
 import {
   getMessages,
   createMessage,
+  getUserList,
   updateMessageStatus,
   deleteMessage as deleteApi
 } from '~/api/manager';
@@ -112,7 +121,7 @@ const form = reactive({
   id: null,
   status: 0,
   content: '',
-  received_by: ''
+  receivedBy: ''
 });
 // 表单验证规则
 const rules = {
@@ -122,10 +131,17 @@ const rules = {
   content: [
     { required: true, message: '请输入消息内容', trigger: 'blur' }
   ],
-  received_by: [
+  receivedBy: [
     { required: true, message: '请输入接受人', trigger: 'blur' }
   ]
 };
+
+
+const ulist = ref([])
+getUserList().then(res=>{
+  ulist.value = res.data.list
+})
+
 // 表单引用
 const formRef = ref(null);
 
@@ -135,7 +151,7 @@ const fetchMessages = async () => {
     const res = await getMessages({
       page: currentPage.value,
       limit: pageSize.value,
-      received_by: searchReceiver.value,
+      receivedBy: searchReceiver.value,
       status: searchStatus.value
     });
     messages.value = res.data.list;
@@ -157,7 +173,7 @@ const openAddModal = () => {
   form.id = null;
   form.status = 0;
   form.content = '';
-  form.received_by = '';
+  form.receivedBy = '';
   dialogVisible.value = true;
 };
 

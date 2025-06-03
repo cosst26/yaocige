@@ -3,17 +3,13 @@
 import { ref, reactive, computed,defineComponent } from 'vue'
 import { toast, dateString, messageBox } from "~/composables/util"
 import { Plus } from '@element-plus/icons-vue'
-import { getArticle, createArticle, deleteArticle, updateArticle,getArticleType } from '~/api/manager'
+import { getArticleType, createArticleType, deleteArticleType, updateArticleType } from '~/api/manager'
 
 
 
 
 const tableData = ref([])
 const roleData = ref([])
-
-getArticleType().then(res=>{
-    roleData.value = res.data.list;
-})
 
 
 const pageInfo = reactive({
@@ -29,7 +25,7 @@ const total = ref(0)
 const addFormDialog = ref(false)
 
 function getData() {
-    getArticle(pageInfo).then(res => {
+    getArticleType(pageInfo).then(res => {
         console.log(res, 'resrserse')
         tableData.value = res.data.list
         total.value = res.data.total
@@ -37,7 +33,6 @@ function getData() {
 }
 
 getData()
-
 
 
 const valueHtml = ref('')
@@ -53,10 +48,10 @@ function handleCurrentChange(value) {
 const refForm = ref(null)
 
 const form = reactive({
-    title: '',
-    content: '',
-    imgUrl: '',
-    articleTypeId:''
+    name: '',
+    
+
+   
   
 })
 
@@ -73,7 +68,14 @@ const handleAvatarSuccess = (
 }
 
 const beforeAvatarUpload = (rawFile) => {
-    
+    if (rawFile.type !== 'image/jpeg') {
+        toast('Avatar picture must be JPG format!', "error")
+        return false
+    } else if (rawFile.size / 1024 / 1024 > 2) {
+        toast('Avatar picture size can not exceed 2MB!', "error")
+        return false
+    }
+    return true
 }
 
 // o 等于新增 等于当前id是修改
@@ -96,10 +98,8 @@ const resetForm = (row = false) => {
 function openHandleCreateModal() {
     modalId.value = 0
     resetForm({
-        title: '',
-        content: '',
-        imgUrl: '',
-        articleTypeId:''
+        name: '',
+        
       
     })
     addFormDialog.value = true
@@ -114,7 +114,7 @@ const handleEdit = (row) => {
 
 // 提交新增表单
 function handleSubmit() {
-    const fun = modalId.value ? updateArticle({ id: modalId.value, ...form }) : createArticle(form)
+    const fun = modalId.value ? updateArticleType({ id: modalId.value, name: form.name }) : createArticleType(form)
 
         fun.then(res => {
             if (res.code !== 200) {
@@ -137,7 +137,7 @@ function handleSubmit() {
 // 删除
 const handleDelete = (id) => {
     messageBox("确定要删除吗？").then(isres => {
-        deleteArticle(id).then(res => {
+        deleteArticleType(id).then(res => {
             if (res.code !== 200) {
                 toast(res.message, "error");
                 return;
@@ -176,27 +176,14 @@ const handleDelete = (id) => {
 
 
         <el-table :data="tableData" stripe style="width: 100%">
-            <!-- <el-table-column prop="id" label="id" align="center" width="50px"></el-table-column> -->
-
-            <el-table-column label="图片" align="center">
-                <template #default="{ row }">
-                    <div class="flex items-center justify-center">
-                        <el-avatar :size="50" :src="row.imgUrl">
-                            <img src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png" alt="">
-                        </el-avatar>
-                    </div>
-                </template>
-            </el-table-column>
-
-            <el-table-column prop="title" label="标题" align="center"></el-table-column>
             
-            <el-table-column prop="articleTypeName" label="分类名称" align="center"></el-table-column>
+            
+            <el-table-column prop="name" label="名称" align="center"></el-table-column>
+            
+           
             
           
-            <el-table-column prop="content" label="内容" align="center">
-                <template #default="scope">
-                <div class="contentclass">{{ scope.row.content }}</div></template>
-            </el-table-column>
+          
            
           
            
@@ -220,34 +207,15 @@ const handleDelete = (id) => {
 
             <el-form :model="form"  ref="refForm" label-width="80px">
 
-                <el-form-item prop="title" label="标题">
-                    <el-input v-model="form.title" placeholder="标题" />
-                </el-form-item>
-
-                <el-form-item prop="articleTypeId" label="分类">
-                    <el-select v-model="form.articleTypeId" placeholder="分类">
-                        <el-option v-for="item in roleData" :key="item.id" :label="item.name" :value="item.id">
-                        </el-option>
-                    </el-select>
+                <el-form-item prop="name" label="名称">
+                    <el-input v-model="form.name" placeholder="名称" />
                 </el-form-item>
               
-                <el-form-item prop="content" label="内容">
-                    <textarea v-model="form.content" name="" id="" style="width: 100%;height: 300px;outline: none;border: 1px solid #ddd;padding: 5px;"></textarea>
-                  
-                </el-form-item>
-
+              
+             
           
 
 
-                <el-form-item prop="avatar" label="图片">
-                    <el-upload class="avatar-uploader" :action="$elyasApi+'/file/uploadFile'"
-                        :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
-                        <img v-if="form.imgUrl" :src="form.imgUrl" class="avatar" />
-                        <el-icon v-else class="avatar-uploader-icon">
-                            <Plus />
-                        </el-icon>
-                    </el-upload>
-                </el-form-item>
 
                 
             </el-form>

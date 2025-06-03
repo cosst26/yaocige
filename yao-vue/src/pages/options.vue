@@ -23,7 +23,7 @@
           <span class="detailDss">{{ scope.row.content }}</span>
         </template>
       </el-table-column>
-      <el-table-column prop="question_id" label="所属 MBTI 问题 ID" align="center" />
+      <el-table-column prop="questionId" label="所属 MBTI 问题 ID" align="center" />
       <el-table-column label="操作" align="center">
         <template #default="scope">
           <el-button type="primary" size="small" @click="openEditModal(scope.row)">编辑</el-button>
@@ -55,8 +55,11 @@
         <el-form-item label="选项内容" prop="content">
           <el-input type="textarea" v-model="form.content" placeholder="请输入选项内容" />
         </el-form-item>
-        <el-form-item label="所属 MBTI 问题 ID" prop="question_id">
-          <el-input v-model="form.question_id" placeholder="请输入所属 MBTI 问题 ID" />
+        <el-form-item label="所属 MBTI 问题 ID" prop="questionId">
+          <el-select v-model="form.questionId" placeholder="所属 MBTI 问题 ID">
+                        <el-option v-for="item in ulist" :key="item.id" :label="item.title" :value="item.id">
+                        </el-option>
+                    </el-select>
         </el-form-item>
       </el-form>
       <template #footer>
@@ -76,9 +79,16 @@ import { Plus, Refresh } from '@element-plus/icons-vue';
 import {
   getOptions,
   createOption,
+  getQuestions,
   updateOption,
   deleteOption as deleteApi
 } from '~/api/manager';
+
+
+const ulist = ref([])
+getQuestions().then(res=>{
+  ulist.value = res.data.list
+})
 
 // 表格数据
 const options = ref([]);
@@ -98,14 +108,14 @@ const dialogTitle = ref('');
 const form = reactive({
   id: null,
   content: '',
-  question_id: null
+  questionId: null
 });
 // 表单验证规则
 const rules = {
   content: [
     { required: true, message: '请输入选项内容', trigger: 'blur' }
   ],
-  question_id: [
+  questionId: [
     { required: true, message: '请输入所属 MBTI 问题 ID', trigger: 'blur' },
     { type: 'number', message: '请输入有效的数字', trigger: 'blur' }
   ]
@@ -119,7 +129,7 @@ const fetchOptions = async () => {
     const res = await getOptions({
       page: currentPage.value,
       limit: pageSize.value,
-      question_id: searchQuestionId.value
+      questionId: searchQuestionId.value
     });
     options.value = res.data.list;
     total.value = res.data.total;
@@ -139,7 +149,7 @@ const openAddModal = () => {
   dialogTitle.value = '新增 MBTI 选项';
   form.id = null;
   form.content = '';
-  form.question_id = null;
+  form.questionId = null;
   dialogVisible.value = true;
 };
 
@@ -148,7 +158,7 @@ const openEditModal = (row) => {
   dialogTitle.value = '编辑 MBTI 选项';
   form.id = row.id;
   form.content = row.content;
-  form.question_id = row.question_id;
+  form.questionId = row.question_id;
   dialogVisible.value = true;
 };
 

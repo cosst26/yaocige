@@ -132,6 +132,23 @@ const asideMenus = [
                 frontpath: "/options"
             },
         ]
+    },
+    {
+        id: 11,
+        name: '文章',
+        con: 'location',
+        child: [
+            {
+                id: 0,
+                name: '文章',
+                frontpath: "/article"
+            },
+            {
+                id: 1,
+                name: '分类',
+                frontpath: "/articleType"
+            },
+        ]
     }
 ]
 

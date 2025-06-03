@@ -21,18 +21,18 @@
       <el-table-column prop="name" label="生肖名称" align="center" />
       <el-table-column label="图片" align="center">
         <template #default="scope">
-          <img v-if="scope.row.img_url" :src="scope.row.img_url" alt="生肖图片" style="max-width: 100px; max-height: 100px" />
+          <img v-if="scope.row.imgUrl" :src="scope.row.imgUrl" alt="生肖图片" style="max-width: 100px; max-height: 100px" />
         </template>
       </el-table-column>
-      <el-table-column prop="zodiac_desc" label="描述" align="center" />
-      <el-table-column prop="user_profile_id" label="用户档案ID" align="center" />
-      <el-table-column prop="zodiac_birth" label="属相生辰" align="center" />
-      <el-table-column prop="ziwei_desc" label="紫薇描述" align="center" />
-      <el-table-column prop="advantage_desc" label="优点" align="center" />
-      <el-table-column prop="disad_desc" label="缺点" align="center" />
-      <el-table-column prop="career_desc" label="事业" align="center" />
-      <el-table-column prop="wealth_desc" label="财富" align="center" />
-      <el-table-column prop="love_desc" label="爱情" align="center" />
+      <el-table-column prop="zodiacDesc" label="描述" align="center" />
+      <el-table-column prop="userProfileId" label="用户档案ID" align="center" />
+      <el-table-column prop="zodiacBirth" label="属相生辰" align="center" />
+      <el-table-column prop="ziweiDesc" label="紫薇描述" align="center" />
+      <el-table-column prop="advantageDesc" label="优点" align="center" />
+      <el-table-column prop="disadDesc" label="缺点" align="center" />
+      <el-table-column prop="careerDesc" label="事业" align="center" />
+      <el-table-column prop="wealthDesc" label="财富" align="center" />
+      <el-table-column prop="loveDesc" label="爱情" align="center" />
       <el-table-column label="操作" align="center">
         <template #default="scope">
           <el-button type="primary" size="small" @click="openEditModal(scope.row)">编辑</el-button>
@@ -64,46 +64,48 @@
         <el-form-item label="生肖名称" prop="name">
           <el-input v-model="form.name" placeholder="请输入生肖名称" />
         </el-form-item>
-        <el-form-item label="图片" prop="img_url">
-          <el-upload
-            class="avatar-uploader"
-            :action="uploadUrl"
-            :show-file-list="false"
-            :on-success="handleUploadSuccess"
-            :before-upload="beforeUpload"
-          >
-            <img v-if="form.img_url" :src="form.img_url" class="avatar" />
-            <el-icon v-else class="avatar-uploader-icon">
-              <Plus />
-            </el-icon>
-          </el-upload>
+       <el-form-item prop="avatar" label="图片">
+                    <el-upload class="avatar-uploader" :action="$elyasApi+'/file/uploadFile'"
+                        :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
+                        <img v-if="form.imgUrl" :src="form.imgUrl" class="avatar" />
+                        <el-icon v-else class="avatar-uploader-icon">
+                            <Plus />
+                        </el-icon>
+                    </el-upload>
+                </el-form-item>
+        <el-form-item label="描述" prop="zodiacDesc">
+          <el-input type="textarea" v-model="form.zodiacDesc" placeholder="请输入描述" />
         </el-form-item>
-        <el-form-item label="描述" prop="zodiac_desc">
-          <el-input type="textarea" v-model="form.zodiac_desc" placeholder="请输入描述" />
+
+
+        <el-form-item label="用户档案ID" prop="userProfileId">
+          <el-select v-model="form.userProfileId" placeholder="用户档案ID">
+                        <el-option v-for="item in ulist" :key="item.id" :label="item.userName" :value="item.id">
+                        </el-option>
+                    </el-select>
         </el-form-item>
-        <el-form-item label="用户档案ID" prop="user_profile_id">
-          <el-input v-model="form.user_profile_id" placeholder="请输入用户档案ID" />
+
+
+        <el-form-item label="属相生辰" prop="zodiacBirth">
+          <el-input type="textarea" v-model="form.zodiacBirth" placeholder="请输入属相生辰" />
         </el-form-item>
-        <el-form-item label="属相生辰" prop="zodiac_birth">
-          <el-input type="textarea" v-model="form.zodiac_birth" placeholder="请输入属相生辰" />
+        <el-form-item label="紫薇描述" prop="ziweiDesc">
+          <el-input type="textarea" v-model="form.ziweiDesc" placeholder="请输入紫薇描述" />
         </el-form-item>
-        <el-form-item label="紫薇描述" prop="ziwei_desc">
-          <el-input type="textarea" v-model="form.ziwei_desc" placeholder="请输入紫薇描述" />
+        <el-form-item label="优点" prop="advantageDesc">
+          <el-input type="textarea" v-model="form.advantageDesc" placeholder="请输入优点" />
         </el-form-item>
-        <el-form-item label="优点" prop="advantage_desc">
-          <el-input type="textarea" v-model="form.advantage_desc" placeholder="请输入优点" />
+        <el-form-item label="缺点" prop="disadDesc">
+          <el-input type="textarea" v-model="form.disadDesc" placeholder="请输入缺点" />
         </el-form-item>
-        <el-form-item label="缺点" prop="disad_desc">
-          <el-input type="textarea" v-model="form.disad_desc" placeholder="请输入缺点" />
+        <el-form-item label="事业" prop="careerDesc">
+          <el-input type="textarea" v-model="form.careerDesc" placeholder="请输入事业描述" />
         </el-form-item>
-        <el-form-item label="事业" prop="career_desc">
-          <el-input type="textarea" v-model="form.career_desc" placeholder="请输入事业描述" />
+        <el-form-item label="财富" prop="wealthDesc">
+          <el-input type="textarea" v-model="form.wealthDesc" placeholder="请输入财富描述" />
         </el-form-item>
-        <el-form-item label="财富" prop="wealth_desc">
-          <el-input type="textarea" v-model="form.wealth_desc" placeholder="请输入财富描述" />
-        </el-form-item>
-        <el-form-item label="爱情" prop="love_desc">
-          <el-input type="textarea" v-model="form.love_desc" placeholder="请输入爱情描述" />
+        <el-form-item label="爱情" prop="loveDesc">
+          <el-input type="textarea" v-model="form.loveDesc" placeholder="请输入爱情描述" />
         </el-form-item>
       </el-form>
       <template #footer>
@@ -123,9 +125,16 @@ import { Plus, Refresh } from '@element-plus/icons-vue';
 import {
   getZodiacs,
   createZodiac,
+  getUserProfiles,
   updateZodiac,
   deleteZodiac as deleteApi
 } from '~/api/manager';
+
+
+const ulist = ref([])
+getUserProfiles().then(res=>{
+  ulist.value = res.data.list;
+})
 
 // 表格数据
 const zodiacs = ref([]);
@@ -145,23 +154,34 @@ const dialogTitle = ref('');
 const form = reactive({
   id: null,
   name: '',
-  img_url: '',
-  zodiac_desc: '',
-  user_profile_id: null,
-  zodiac_birth: '',
-  ziwei_desc: '',
-  advantage_desc: '',
-  disad_desc: '',
-  career_desc: '',
-  wealth_desc: '',
-  love_desc: ''
+  imgUrl: '',
+  zodiacDesc: '',
+  userProfileId: null,
+  zodiacBirth: '',
+  ziweiDesc: '',
+  advantageDesc: '',
+  disadDesc: '',
+  careerDesc: '',
+  wealthDesc: '',
+  loveDesc: ''
 });
+
+
+const handleAvatarSuccess = (
+    response,
+    uploadFile
+) => {
+    form.imgUrl = uploadFile.response.data
+    
+}
+
+
 // 表单验证规则
 const rules = {
   name: [
     { required: true, message: '请输入生肖名称', trigger: 'blur' }
   ],
-  user_profile_id: [
+  userProfileId: [
     { required: true, message: '请输入用户档案ID', trigger: 'blur' },
     { type: 'number', message: '请输入有效的数字', trigger: 'blur' }
   ]
@@ -197,16 +217,16 @@ const openAddModal = () => {
   dialogTitle.value = '新增生肖结果';
   form.id = null;
   form.name = '';
-  form.img_url = '';
-  form.zodiac_desc = '';
-  form.user_profile_id = null;
-  form.zodiac_birth = '';
-  form.ziwei_desc = '';
-  form.advantage_desc = '';
-  form.disad_desc = '';
-  form.career_desc = '';
-  form.wealth_desc = '';
-  form.love_desc = '';
+  form.imgUrl = '';
+  form.zodiacDesc = '';
+  form.userProfileId = null;
+  form.zodiacBirth = '';
+  form.ziweiDesc = '';
+  form.advantageDesc = '';
+  form.disadDesc = '';
+  form.careerDesc = '';
+  form.wealthDesc = '';
+  form.loveDesc = '';
   dialogVisible.value = true;
 };
 
@@ -215,16 +235,16 @@ const openEditModal = (row) => {
   dialogTitle.value = '编辑生肖结果';
   form.id = row.id;
   form.name = row.name;
-  form.img_url = row.img_url;
-  form.zodiac_desc = row.zodiac_desc;
-  form.user_profile_id = row.user_profile_id;
-  form.zodiac_birth = row.zodiac_birth;
-  form.ziwei_desc = row.ziwei_desc;
-  form.advantage_desc = row.advantage_desc;
-  form.disad_desc = row.disad_desc;
-  form.career_desc = row.career_desc;
-  form.wealth_desc = row.wealth_desc;
-  form.love_desc = row.love_desc;
+  form.imgUrl = row.imgUrl;
+  form.zodiacDesc = row.zodiacDesc;
+  form.userProfileId = row.userProfileId;
+  form.zodiacBirth = row.zodiacBirth;
+  form.ziweiDesc = row.ziweiDesc;
+  form.advantageDesc = row.advantageDesc;
+  form.disadDesc = row.disadDesc;
+  form.careerDesc = row.careerDesc;
+  form.wealthDesc = row.wealthDesc;
+  form.loveDesc = row.loveDesc;
   dialogVisible.value = true;
 };
 
@@ -264,7 +284,7 @@ const deleteZodiac = async (id) => {
 
 // 图片上传成功处理
 const handleUploadSuccess = (response, file) => {
-  form.img_url = response.data.url;
+  form.imgUrl = response.data.url;
 };
 
 // 图片上传前处理

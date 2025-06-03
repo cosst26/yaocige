@@ -31,7 +31,7 @@
       
     
       <view class="triangle-container">
-        <view class="triangle-item" v-for="(item, index) in triangleData" :key="index">
+       <!-- <view class="triangle-item" v-for="(item, index) in triangleData" :key="index">
           <view class="triangle-top" :style="{ color: item.color }">{{ item.topText }}</view>
           <view class="triangle-wrapper" style="display: flex;align-items: center;flex-direction: column;">
             <svg class="triangle-svg" viewBox="0 0 200 113" preserveAspectRatio="xMidYMin meet">
@@ -56,7 +56,7 @@
 			   <view :style="{ color: item.color }">{{item.text}}</view>
           </view>
 		
-        </view>
+        </view> -->
       </view>
     </view>
 

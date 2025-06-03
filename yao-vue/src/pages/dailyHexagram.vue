@@ -21,12 +21,11 @@
       <el-table-column prop="title" label="标题" align="center" />
       <el-table-column label="图片" align="center">
         <template #default="scope">
-          <img v-if="scope.row.img_url" :src="scope.row.img_url" alt="每日一卦图片" style="max-width: 100px; max-height: 100px" />
+          <img v-if="scope.row.imgUrl" :src="scope.row.imgUrl" alt="每日一卦图片" style="max-width: 100px; max-height: 100px" />
         </template>
       </el-table-column>
       <el-table-column prop="author" label="作者" align="center" />
-      <el-table-column prop="sort" label="排序" align="center" />
-      <el-table-column prop="view_count" label="浏览次数" align="center" />
+     
       <el-table-column label="操作" align="center">
         <template #default="scope">
           <el-button type="primary" size="small" @click="openEditModal(scope.row)">编辑</el-button>
@@ -61,23 +60,16 @@
         <el-form-item label="内容" prop="content">
           <el-input type="textarea" v-model="form.content" placeholder="请输入内容" />
         </el-form-item>
-        <el-form-item label="图片" prop="img_url">
-          <el-upload
-            class="avatar-uploader"
-            :action="uploadUrl"
-            :show-file-list="false"
-            :on-success="handleUploadSuccess"
-            :before-upload="beforeUpload"
-          >
-            <img v-if="form.img_url" :src="form.img_url" class="avatar" />
-            <el-icon v-else class="avatar-uploader-icon">
-              <Plus />
-            </el-icon>
-          </el-upload>
-        </el-form-item>
-        <el-form-item label="排序" prop="sort">
-          <el-input-number v-model="form.sort" placeholder="请输入排序" />
-        </el-form-item>
+        <el-form-item prop="imgUrl" label="图片">
+                    <el-upload class="avatar-uploader" :action="$elyasApi+'/file/uploadFile'"
+                        :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
+                        <img v-if="form.imgUrl" :src="form.imgUrl" class="avatar" />
+                        <el-icon v-else class="avatar-uploader-icon">
+                            <Plus />
+                        </el-icon>
+                    </el-upload>
+                </el-form-item>
+       
         <el-form-item label="作者" prop="author">
           <el-input v-model="form.author" placeholder="请输入作者" />
         </el-form-item>
@@ -122,7 +114,7 @@ const form = reactive({
   id: null,
   title: '',
   content: '',
-  img_url: '',
+  imgUrl: '',
   sort: null,
   author: ''
 });
@@ -134,10 +126,7 @@ const rules = {
   content: [
     { required: true, message: '请输入内容', trigger: 'blur' }
   ],
-  sort: [
-    { required: true, message: '请输入排序', trigger: 'blur' },
-    { type: 'number', message: '请输入有效的数字', trigger: 'blur' }
-  ],
+ 
   author: [
     { required: true, message: '请输入作者', trigger: 'blur' }
   ]
@@ -174,7 +163,7 @@ const openAddModal = () => {
   form.id = null;
   form.title = '';
   form.content = '';
-  form.img_url = '';
+  form.imgUrl = '';
   form.sort = null;
   form.author = '';
   dialogVisible.value = true;
@@ -186,7 +175,7 @@ const openEditModal = (row) => {
   form.id = row.id;
   form.title = row.title;
   form.content = row.content;
-  form.img_url = row.img_url;
+  form.imgUrl = row.imgUrl;
   form.sort = row.sort;
   form.author = row.author;
   dialogVisible.value = true;
@@ -226,24 +215,18 @@ const deleteDailyHexagram = async (id) => {
   }
 };
 
-// 图片上传成功处理
-const handleUploadSuccess = (response, file) => {
-  form.img_url = response.data.url;
-};
+
+const handleAvatarSuccess = (
+    response,
+    uploadFile
+) => {
+    form.imgUrl = uploadFile.response.data
+   
+}
 
 // 图片上传前处理
 const beforeUpload = (file) => {
-  const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
-  if (!isJpgOrPng) {
-    toast('只能上传 JPG/PNG 格式的图片', 'error');
-    return false;
-  }
-  const isLt2M = file.size / 1024 / 1024 < 2;
-  if (!isLt2M) {
-    toast('图片大小不能超过 2MB', 'error');
-    return false;
-  }
-  return true;
+ 
 };
 
 // 初始化数据

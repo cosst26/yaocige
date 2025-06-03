@@ -19,11 +19,7 @@
     <!-- 表格 -->
     <el-table :data="questions" stripe style="width: 100%">
       <el-table-column prop="title" label="标题" align="center" />
-      <el-table-column prop="content" label="内容" align="center">
-        <template #default="scope">
-          <span class="detailDss">{{ scope.row.content }}</span>
-        </template>
-      </el-table-column>
+     
       <el-table-column label="操作" align="center">
         <template #default="scope">
           <el-button type="primary" size="small" @click="openEditModal(scope.row)">编辑</el-button>
@@ -55,9 +51,7 @@
         <el-form-item label="标题" prop="title">
           <el-input v-model="form.title" placeholder="请输入标题" />
         </el-form-item>
-        <el-form-item label="内容" prop="content">
-          <el-input type="textarea" v-model="form.content" placeholder="请输入内容" />
-        </el-form-item>
+       
       </el-form>
       <template #footer>
         <span class="dialog-footer">

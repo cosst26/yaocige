@@ -21,6 +21,9 @@ import userProfile from "~/pages/userProfile.vue";
 import zodiac from "~/pages/zodiac.vue";
 import question from "~/pages/question.vue";
 import options from "~/pages/options.vue";
+import articleType from "~/pages/articleType.vue";
+
+
 
 const routes = [
   {
@@ -116,6 +119,13 @@ const routes = [
         component: comment,
         meta: {
           title: "评论",
+        },
+      },
+      {
+        path: "/articleType",
+        component: articleType,
+        meta: {
+          title: "分类",
         },
       },
     ],

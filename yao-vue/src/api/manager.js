@@ -175,7 +175,7 @@ export function deleteCover(id) {
 
 // 科普资讯
 export function getArticle(data) {
-    return axios.post("/article/findAllByModal",data)
+    return axios.post("/article/findByModal",data)
 }
 
 export function createArticle(data) {
@@ -195,6 +195,24 @@ export function detailArticle(data) {
 
 
 
+export function getArticleType(data) {
+    return axios.post("/article/type/findByModal",data)
+}
+
+export function createArticleType(data) {
+    return axios.post("/article/type/add",data)
+}
+
+export function deleteArticleType(id) {
+    return axios.post("/article/type/delete?id="+id)
+}
+
+export function updateArticleType(data) {
+    return axios.post("/article/type/update",data)
+}
+export function detailArticleType(data) {
+    return axios.post("/article/type/detail?id="+data)
+}
 
 
 
